@@ -1,0 +1,49 @@
+# Node.js modules
+node_modules/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Dependency directories
+jspm_packages/
+
+# dotenv environment files
+.env
+
+# Next.js build output
+.next/
+
+# Typescript build output
+dist/
+build/
+
+# Optional npm cache directory
+.npm/
+
+# IDE files
+.vscode/
+.idea/
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Build directories
+/public/
+*.tgz
+
+# coverage directory used by testing tools
+coverage/
+
+# Docker
+.docker/
+
+# AWS
+.aws-sdk/
+
+# SASS build output
+.sass-cache/
