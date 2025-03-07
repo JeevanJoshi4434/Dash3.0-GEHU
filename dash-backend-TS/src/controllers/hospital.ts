@@ -33,8 +33,9 @@ export class HospitalController extends Hospital {
     public async findNear(req: UserRequest, res: Response): Promise<Response | void> {
         try {
             const { lat, long,page } = req.body;
-            const nearHospitals = await this.getHospitals(10, page, lat, long);
-            res.status(200).json({ success: true, nearHospitals });
+            console.log(lat, long, page);
+            const nearHospitals = await this.getHospitals(30, page, lat, long);
+            res.status(200).json({ success: true, list:nearHospitals, type: "hospital" });
         } catch (error) {
             globalErrorHandler(error, res);
         }

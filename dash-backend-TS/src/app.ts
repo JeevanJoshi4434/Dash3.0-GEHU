@@ -27,17 +27,18 @@ class App {
 
     // CORS configuration
     const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
-    this.app.use(
-      cors({
-        origin: (origin, callback) => {
-          if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-          } else {
-            callback(new Error(`Origin ${origin} is not allowed by CORS`));
-          }
-        },
-      }),
-    );
+    // this.app.use(
+    //   cors({
+    //     origin: (origin, callback) => {
+    //       if (!origin || allowedOrigins.includes(origin)) {
+    //         callback(null, true);
+    //       } else {
+    //         callback(new Error(`Origin ${origin} is not allowed by CORS`));
+    //       }
+    //     },
+    //   }),
+    // );
+    this.app.use(cors({ origin: "*" }));
   }
 
   private initializeRoutes(): void {

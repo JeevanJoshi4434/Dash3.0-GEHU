@@ -59,8 +59,8 @@ class User {
     }
 
     // Find a user by phone
-    public async findUserByEmail(phone: string): Promise<IUser | null> {
-        return this.userModel.findOne({ phone }).exec();
+    public async findUserByPhone(phone: string): Promise<IUser | null> {
+        return this.userModel.findOne({ phone: phone.trim() });
     }
 
     // Find user by a custom field (e.g., type or phone)

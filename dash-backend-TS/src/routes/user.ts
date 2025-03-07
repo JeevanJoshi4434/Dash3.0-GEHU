@@ -25,7 +25,13 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
   userController.login(req, res).catch(next);
 }, globalErrorHandler)
 
-router.get('/farmers', authenticator, async (req: Request, res: Response, next: NextFunction) => {
+
+router.post('/upload',authenticator, (req: Request, res: Response, next: NextFunction)=>{
+  userController.uploadFile(req, res).catch(next);
+}, globalErrorHandler);
+
+
+router.get('/near', authenticator, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await userController.findFarmers(req, res); // Use the controller method
   } catch (error) {

@@ -27,11 +27,11 @@ class DoctorController extends Doctor {
      */
     async create(req: Request, res: Response) {
         try {
-            const { name, phone, password, location, specialization, fee, experience } = req.body;
+            const { name, phone, password, location } = req.body;
             
-            const result = await this.createDoctor(name, password, phone, specialization, experience, fee, location);
+            const result = await this.createDoctor(name, password, phone, "abcd", "2", 231232, location);
             const token = JWT.sign({ id: result._id, phone: result.phone,role:"doctor" }, process.env.JWT_SECRET as string, { expiresIn: '10d' });
-            return res.status(201).json({ success: true, result, token });
+            return res.status(201).json({ success: true, user:result, token });
         } catch (error) {
             globalErrorHandler(error, res);
         }
@@ -46,7 +46,7 @@ class DoctorController extends Doctor {
                 return res.status(404).json("Doctor not found");
             }
             const token = JWT.sign({ id: doctor._id, phone: doctor.phone, role:"doctor" }, process.env.JWT_SECRET as string, { expiresIn: '10d' });
-            res.status(200).json({succes:true, result:doctor, token});
+            res.status(200).json({succes:true, user:doctor, token});
         } catch (error) {
             globalErrorHandler(error, res);
         }
@@ -96,7 +96,7 @@ class DoctorController extends Doctor {
                 .limit(limitNumber)
                 .skip((pageNumber - 1) * limitNumber).exec(); // Skip for pagination
 
-            return res.status(200).json({success:true, list: doctors});
+            return res.status(200).json({success:true, list: doctors, type: 'doctor'});
         } catch (error) {
             globalErrorHandler(error, res);
         }

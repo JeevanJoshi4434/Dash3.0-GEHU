@@ -38,7 +38,16 @@ export default class Doctor {
     }
 
     protected createDoctor(name: String, password: String, phone: Number, specialization: String, experience: String, fee: Number, location: object): Promise<DC> {
-        const doctor = new this.doctorModel({
+        console.log({
+            name: name,
+            phone: phone,
+            password: password,
+            location: location,
+            experience: experience,
+            specialization: specialization,
+            fee: fee
+        })
+          const doctor = new this.doctorModel({
             name: name,
             phone: phone,
             password: password,

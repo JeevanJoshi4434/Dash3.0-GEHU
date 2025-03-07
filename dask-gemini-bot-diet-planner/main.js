@@ -1,6 +1,6 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
-
+const cors = require("cors");
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -10,9 +10,20 @@ const app = express();
 
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(cors(
+    {
+        origin: "*"
+    }
+));
 
-app.get("/", (req, res) => {
-    res.send("Hello Mommy");
+app.post("/api/chat", async(req, res) => {
+    try {
+        const {prompt} = req.body; 
+        const result = await generate(prompt);
+        res.status(200).json({response:result});
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 const generate = async (prompt) => {
@@ -69,6 +80,9 @@ app.post("/api/diet-plan", async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+
+
+
+app.listen(4001, () => {
+    console.log("Server is running on port 4001");
 });
