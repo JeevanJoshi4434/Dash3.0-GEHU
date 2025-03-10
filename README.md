@@ -51,8 +51,8 @@ npm run dev
 ### **4️⃣ Gemini AI Bot & Diet Planner Setup**  
 ```bash
 cd ../dask-gemini-bot-diet-planner
-pip install -r requirements.txt
-python app.py
+npm install
+npm run start
 ```
 
 ## 👨‍💻 Team Members  
